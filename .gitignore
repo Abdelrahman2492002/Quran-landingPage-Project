@@ -1,2 +1,26 @@
 .history
-node_modules
+
+# تجاهل مجلدات التطوير
+node_modules/
+src/
+scripts/
+styles/
+images/
+
+# تجاهل ملفات التهيئة
+package-lock.json
+package.json
+
+# تجاهل ملفات SCSS الأصلية
+*.scss
+_mixins.scss
+style.scss
+
+# تجاهل ملف README إذا كان لا ترغب في رفعه
+README.md
+
+# تجاهل ملف index.html في المجلد الرئيسي إذا كان لديك نسخة محدثة في dist
+index.html
+
+# الإبقاء على مجلد dist فقط وعدم تجاهله
+!dist/
