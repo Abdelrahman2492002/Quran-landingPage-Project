@@ -1,0 +1,17 @@
+{
+  "name": "quran-landingpage-project",
+  "version": "1.0.0",
+  "description": "Welcome to the Quran Landing Page project repository! This project is a landing page dedicated to showcasing the beauty of the Quran, designed and developed using HTML, CSS, Grid, and Flexbox.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "sass": "^1.80.6",
+    "vite": "^5.4.10"
+  }
+}

@@ -1,0 +1,362 @@
+@import "./mixins";
+
+:root {
+  --color-soft-blue: #5368df;
+  --color-soft-red: #fa5757;
+  --color-grayish-blue: #9194a1;
+  --color-very-dark-blue: #252b46;
+  --color-off-white: #f7f7f7;
+  --color-white: #fff;
+  --default-padding: 2rem;
+  --default-radius: 0.4rem;
+  --desktop-width: 900px;
+  --tablet-width: 600px;
+  --timing-animation: 0.2s;
+}
+
+/* CSS Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  display: inline-block;
+  text-decoration: none;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  border: 0;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+  scroll-padding-top: 4rem;
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: "Rubik", sans-serif;
+  line-height: 1.3;
+  overflow-x: hidden;
+}
+
+/* End CSS Reset */
+
+.button {
+  background-color: var(--color-soft-blue);
+  color: var(--color-off-white);
+  padding: 1.2rem 2.4rem;
+  border-radius: var(--default-radius);
+  font-size: 1.2rem;
+  font-weight: 500;
+  box-shadow: 0 0.4rem 0.8rem 0.2rem rgba(0, 0, 0, 0.1);
+  text-align: center;
+
+  &__secondery {
+    background-color: var(--color-off-white);
+    color: var(--color-very-dark-blue);
+  }
+
+  &__disabled {
+    background-color: var(--color-grayish-blue);
+    cursor: not-allowed;
+    user-select: none;
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--default-padding) * 4);
+  max-width: var(--desktop-width);
+  margin: 0 auto;
+  padding: 0 var(--default-padding);
+
+  @media (max-width: 600px) {
+    gap: calc(var(--default-padding) * 2);
+  }
+}
+
+// header
+
+.header {
+  @include flex__item-center;
+  justify-content: space-between;
+  margin-top: var(--default-padding);
+
+  @media (max-width: 600px) {
+    font-size: 1.4rem;
+  }
+}
+
+.logoContent {
+  @include flex__item-center;
+  gap: 0.8rem;
+  text-transform: uppercase;
+  font-weight: 500;
+
+  &__logo {
+    width: 4rem;
+    max-width: 100%;
+  }
+}
+
+.links {
+  display: flex;
+  gap: var(--default-padding);
+
+  @media (max-width: 600px) {
+    gap: calc(var(--default-padding) / 2);
+  }
+
+  &__link {
+    color: var(--color-very-dark-blue);
+    transition: var(--timing-animation) ease-in-out;
+  }
+
+  &__link:hover {
+    color: var(--color-soft-red);
+  }
+}
+
+// End header
+
+.section {
+  @include flex__item-center;
+  gap: calc(var(--default-padding) * 2);
+  opacity: 0;
+  transform: translateY(1rem);
+  transition: all var(--timing-animation) ease-out;
+
+  &.in-view {
+    opacity: 1;
+    transform: translateY(0);
+
+    :not(.section--one-column) & {
+      & > div:nth-of-type(1) {
+        transform: translateX(0rem);
+      }
+
+      & > div:nth-of-type(2) {
+        transform: translateX(0rem);
+      }
+    }
+  }
+
+  &--one-column {
+    flex-direction: column;
+    gap: calc(var(--default-padding) / 2);
+  }
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    gap: var(--default-padding);
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--default-padding) / 2);
+    flex: 1;
+  }
+
+  &:first-of-type &__title {
+    font-size: 4rem;
+  }
+
+  &__title {
+    font-size: 2.3rem;
+  }
+
+  &__description {
+    color: var(--color-grayish-blue);
+    font-size: 1.4rem;
+
+    .section--one-column & {
+      max-width: 50rem;
+      text-align: center;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    gap: var(--default-padding);
+    margin-top: var(--default-padding);
+  }
+
+  &__button {
+    @media (max-width: 600px) {
+      flex: 1;
+      text-align: center;
+    }
+  }
+
+  &__imageContent {
+    flex: 1;
+
+    @media (max-width: 600px) {
+      order: -1;
+    }
+  }
+
+  &__image {
+    max-width: 100%;
+  }
+}
+
+.cards {
+  display: flex;
+  justify-content: space-between;
+  margin-top: calc(var(--default-padding) * 2);
+  gap: var(--default-padding);
+  width: 100%;
+
+  @media (max-width: 600px) {
+    flex-wrap: wrap;
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 25rem;
+  height: 26rem;
+  border-radius: var(--default-radius);
+  align-items: center;
+  padding: calc(var(--default-padding) * 2) var(--default-padding)
+    var(--default-padding);
+  box-shadow: 0 0.4rem 0.8rem 0.2rem rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 600px) {
+    width: 100%;
+  }
+
+  &__title {
+    font-size: 1.8rem;
+  }
+
+  &__image {
+    width: 6rem;
+    max-width: 100%;
+    margin-bottom: calc(var(--default-padding) / 2);
+  }
+
+  &__button {
+    margin-top: auto;
+    width: 100%;
+    text-align: center;
+    position: relative;
+
+    &::after {
+      content: " ";
+      position: absolute;
+      background-image: url(../images/bg-dots.svg);
+      top: calc(var(--default-padding) * -1.4);
+      left: calc(var(--default-padding) * -1);
+      right: calc(var(--default-padding) * -1);
+      height: 0.3rem;
+      background-size: contain;
+    }
+  }
+}
+
+.faq {
+  max-width: 50rem;
+  border-top: 1px solid var(--color-grayish-blue);
+  margin-top: calc(var(--default-padding) * 1.5);
+
+  &__row {
+    border-bottom: 1px solid var(--color-grayish-blue);
+    padding: var(--default-padding) 0;
+    position: relative;
+  }
+
+  &-input {
+    display: none;
+
+    &:checked ~ .faq-arrow {
+      transform: rotate(180deg);
+    }
+
+    &:checked ~ .faq-answer {
+      opacity: 1;
+      max-height: 30rem;
+      padding-top: var(--default-padding);
+    }
+  }
+
+  &-question {
+    font-size: 1.6rem;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  &-arrow {
+    position: absolute;
+    top: calc(var(--default-padding) + 0.6rem);
+    right: 0;
+    width: 1.2rem;
+    max-width: 100%;
+    cursor: pointer;
+    transition: var(--timing-animation);
+  }
+
+  &-answer {
+    font-size: 1.4rem;
+    font-weight: 400;
+    max-height: 1px;
+    overflow: hidden;
+    opacity: 0;
+    transition: all var(--timing-animation);
+  }
+}
+
+.footer {
+  @include flex__item-center;
+  justify-content: center;
+  position: relative;
+  padding: var(--default-padding) 0;
+  color: var(--color-white);
+  font-size: 1.4rem;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    gap: calc(var(--default-padding) / 2);
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+    height: 100%;
+    background-color: var(--color-very-dark-blue);
+    z-index: -1;
+  }
+
+  &__right {
+    margin-left: auto;
+
+    @media (max-width: 600px) {
+      margin-left: 0;
+    }
+  }
+}
